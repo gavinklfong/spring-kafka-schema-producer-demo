@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>space.gavinklfong.demo</groupId>
+        <artifactId>kafka-insurance-claim-processor</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>kafka-insurance-claim-schema</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+<!--            <plugin>-->
+<!--                <groupId>io.confluent</groupId>-->
+<!--                <artifactId>kafka-schema-registry-maven-plugin</artifactId>-->
+<!--                <version>7.3.1</version>-->
+<!--                <configuration>-->
+<!--                    <schemaRegistryUrls>-->
+<!--                        <param>${kafka.schema.registry}</param>-->
+<!--                    </schemaRegistryUrls>-->
+<!--                    <subjects>-->
+<!--                        <insurance-claim-key>src/main/resources/avro/insurance-claim-key.avsc</insurance-claim-key>-->
+<!--                        <insurance-claim>src/main/resources/avro/insurance-claim.avsc</insurance-claim>-->
+<!--                        &lt;!&ndash;                        <customer>src/main/avro/metadata.avdl</customer>&ndash;&gt;-->
+<!--                    </subjects>-->
+<!--                    <schemaTypes>-->
+<!--                        <insurance-claim-key>AVRO</insurance-claim-key>-->
+<!--                        <insurance-claim>AVRO</insurance-claim>-->
+<!--                    </schemaTypes>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>validate</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>validate</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>register</id>-->
+<!--                        <goals>-->
+<!--                            <goal>register</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <version>1.11.0</version>
+                <executions>
+                    <execution>
+                        <id>avro-from-resources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>idl-protocol</goal>
+                            <goal>schema</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                            <stringType>String</stringType>
+                            <enableDecimalLogicalType>true</enableDecimalLogicalType>
+                            <fieldVisibility>private</fieldVisibility>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

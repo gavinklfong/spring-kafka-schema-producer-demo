@@ -1,0 +1,7 @@
+@namespace("space.gavinklfong.demo.insurance.schema")
+protocol AppProtocol {
+	record InsuranceClaimKey {
+		string customerId;
+		string claimId;
+	}
+}

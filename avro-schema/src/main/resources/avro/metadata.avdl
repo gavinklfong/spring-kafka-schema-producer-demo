@@ -1,0 +1,7 @@
+@namespace("space.gavinklfong.demo.insurance.schema")
+protocol AppProtocol {
+	record Metadata {
+		string correlationId;
+		timestamp_ms timestamp;
+	}
+}

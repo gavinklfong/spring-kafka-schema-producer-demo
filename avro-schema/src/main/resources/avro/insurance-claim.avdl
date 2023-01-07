@@ -1,0 +1,22 @@
+@namespace("space.gavinklfong.demo.insurance.schema")
+protocol AppProtocol {
+
+	import idl "metadata.avdl";
+
+	enum Product {
+		MEDICAL,
+		HOME,
+		TRAVEL
+	}
+
+	enum Priority {
+		LOW, MEDIUM, HIGH
+	}
+
+	record InsuranceClaim {
+		space.gavinklfong.demo.insurance.schema.Metadata metadata;
+		Priority priority;
+		Product product;
+		double claimAmount;
+	}
+}
