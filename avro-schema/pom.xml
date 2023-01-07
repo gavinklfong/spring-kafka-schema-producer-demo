@@ -5,17 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>space.gavinklfong.demo</groupId>
-        <artifactId>kafka-insurance-claim-processor</artifactId>
+        <artifactId>kafka-insurance-claim-producer</artifactId>
         <version>0.0.1</version>
     </parent>
 
     <artifactId>kafka-insurance-claim-schema</artifactId>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -26,40 +20,6 @@
 
     <build>
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>io.confluent</groupId>-->
-<!--                <artifactId>kafka-schema-registry-maven-plugin</artifactId>-->
-<!--                <version>7.3.1</version>-->
-<!--                <configuration>-->
-<!--                    <schemaRegistryUrls>-->
-<!--                        <param>${kafka.schema.registry}</param>-->
-<!--                    </schemaRegistryUrls>-->
-<!--                    <subjects>-->
-<!--                        <insurance-claim-key>src/main/resources/avro/insurance-claim-key.avsc</insurance-claim-key>-->
-<!--                        <insurance-claim>src/main/resources/avro/insurance-claim.avsc</insurance-claim>-->
-<!--                        &lt;!&ndash;                        <customer>src/main/avro/metadata.avdl</customer>&ndash;&gt;-->
-<!--                    </subjects>-->
-<!--                    <schemaTypes>-->
-<!--                        <insurance-claim-key>AVRO</insurance-claim-key>-->
-<!--                        <insurance-claim>AVRO</insurance-claim>-->
-<!--                    </schemaTypes>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>validate</id>-->
-<!--                        <phase>validate</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>validate</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>register</id>-->
-<!--                        <goals>-->
-<!--                            <goal>register</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>

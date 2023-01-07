@@ -1,7 +1,6 @@
 package space.gavinklfong.demo.insurance.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
@@ -13,9 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import space.gavinklfong.demo.insurance.dto.ClaimRequest;
-import space.gavinklfong.demo.insurance.dto.Priority;
-import space.gavinklfong.demo.insurance.dto.Product;
 import space.gavinklfong.demo.insurance.schema.InsuranceClaim;
 import space.gavinklfong.demo.insurance.schema.InsuranceClaimKey;
 import space.gavinklfong.demo.insurance.schema.Metadata;
@@ -63,16 +59,6 @@ public class ClaimsRestController {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
         props.put("schema.registry.url", "http://localhost:8081");
         return new KafkaProducer<>(props);
-    }
-
-    private ClaimRequest generateClaimRequest() {
-        return ClaimRequest.builder()
-                .id(UUID.randomUUID().toString())
-                .customerId(UUID.randomUUID().toString())
-                .product(Product.MEDICAL)
-                .claimAmount(RandomUtils.nextDouble(200, 7000))
-                .priority(Priority.HIGH)
-                .build();
     }
 
     private InsuranceClaim generateAvroClaimRequest() {
