@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.math3.util.Precision;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -68,7 +69,7 @@ public class ClaimsRestController {
                 .build();
 
         return InsuranceClaim.newBuilder()
-                .setClaimAmount(RandomUtils.nextDouble(200, 7000))
+                .setClaimAmount(Precision.round(RandomUtils.nextDouble(200, 7000), 2))
                 .setPriority(space.gavinklfong.demo.insurance.schema.Priority.HIGH)
                 .setProduct(space.gavinklfong.demo.insurance.schema.Product.MEDICAL)
                 .setMetadata(metadata)
